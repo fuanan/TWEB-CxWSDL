@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="PostalMethods" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="PostalMethods" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s1="PostalMethods/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="PostalMethods">
+      <s:element name="SendLetter">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="MyDescription">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:maxLength value="100"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="FileExtension">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:pattern value="MyFile:[A-Za-z0-9]+\.(odf|odg|odm|odp|ods|odt|mht|pdf|doc|docx|html|htm|gif|jpg|jpeg|png|bmp|pcx|xml|xls|xlsx|ppt|pptx|pps|rtf|tif|tiff)">
+            			</s:pattern>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="FileBinaryData">
+            	<s:simpleType>
+            		<s:restriction base="s:base64Binary">
+            			<s:maxLength value="0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="1" name="WorkMode" type="tns:WorkMode"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="WorkMode">
+        <s:restriction base="s:string">
+
+
+          <s:enumeration value="Development"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SendLetterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="SendLetterResult">
+            	<s:simpleType>
+            		<s:restriction base="s:int">
+
+            			<s:minExclusive value="0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendLetterAndAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="MyDescription">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:maxLength value="100"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="FileExtension">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:pattern value="MyFile:[A-Za-z0-9]+\.(odf|odg|odm|odp|ods|odt|mht|pdf|doc|docx|html|htm|gif|jpg|jpeg|png|bmp|pcx|xml|xls|xlsx|ppt|pptx|pps|rtf|tif|tiff)">
+            			</s:pattern>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="FileBinaryData">
+            	<s:simpleType>
+            		<s:restriction base="s:base64Binary">
+            			<s:maxLength value="0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="1" name="WorkMode" type="tns:WorkMode"/>
+            <s:element maxOccurs="1" minOccurs="0" name="AttentionLine1">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="AttentionLine2">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Company">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Address1">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="1"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Address2">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="City">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="1"/>
+            			<s:maxLength value="30"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="State">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="30"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="PostalCode">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="15"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Country">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:minLength value="0"/>
+            			<s:maxLength value="45"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendLetterAndAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="SendLetterAndAddressResult">
+            	<s:simpleType>
+            		<s:restriction base="s:int">
+            			<s:minExclusive value="0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ImageSideScaling">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default"/>
+          <s:enumeration value="FitToPage"/>
+          <s:enumeration value="None"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PrintColor">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default"/>
+          <s:enumeration value="Black"/>
+          <s:enumeration value="FullColor"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PostcardSize">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default"/>
+          <s:enumeration value="Postcard_4_25X6"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MailingPriority">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default"/>
+          <s:enumeration value="FirstClass"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="USTBJJT0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Password">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="my0root"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="MyFileName">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:pattern value="[A-Za-z0-9]+\.(odf|odg|odm|odp|ods|odt|mht|pdf|doc|docx|html|htm|gif|jpg|jpeg|png|bmp|pcx|xml|xls|xlsx|ppt|pptx|pps|rtf|tif|tiff)">
+            			</s:pattern>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="FileBinaryData">
+            	<s:simpleType>
+            		<s:restriction base="s:base64Binary">
+            			<s:minLength value="1"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="1" name="Permissions" type="tns:Permissions"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Description" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Overwrite" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Permissions">
+        <s:restriction base="s:string">
+          <s:enumeration value="Account"/>
+          <s:enumeration value="User"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="UploadFileResult">
+            	<s:simpleType>
+            		<s:restriction base="s:int">
+            			<s:enumeration value="-3000"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUploadedFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="MyFileName">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:pattern value="[A-Za-z0-9]+\.(odf|odg|odm|odp|ods|odt|mht|pdf|doc|docx|html|htm|gif|jpg|jpeg|png|bmp|pcx|xml|xls|xlsx|ppt|pptx|pps|rtf|tif|tiff)">
+            			</s:pattern>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUploadedFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="DeleteUploadedFileResult">
+            	<s:simpleType>
+            		<s:restriction base="s:int">
+            			<s:enumeration value="-3000"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedFileDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedFileDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="GetUploadedFileDetailsResult" type="tns:GetUploadedFileDetailsResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetUploadedFileDetailsResult">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="1" name="ResultCode">
+          	<s:simpleType>
+          		<s:restriction base="s:int">
+          			<s:enumeration value="-3000"/>
+          		</s:restriction>
+          	</s:simpleType>
+          </s:element>
+          <s:element maxOccurs="1" minOccurs="0" name="UploadedFiles" type="tns:ArrayOfFileDetails"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFileDetails">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="FileDetails" type="tns:FileDetails"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FileDetails">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="FileName" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="1" name="SubmitTime" type="s:dateTime"/>
+          <s:element maxOccurs="1" minOccurs="1" name="LastUsage" type="s:dateTime"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Permissions" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Description" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="USTBJJT0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Password">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="my0root"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="ID">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="0-9999999"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="GetDetailsResult" type="tns:GetDetailsResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetDetailsResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:GetGeneralDetailsResult">
+            <s:sequence>
+              <s:element maxOccurs="1" minOccurs="1" name="ResultCode">
+              	<s:simpleType>
+              		<s:restriction base="s:int">
+              			<s:enumeration value="-3000"/>
+              		</s:restriction>
+              	</s:simpleType>
+              </s:element>
+              <s:element maxOccurs="1" minOccurs="0" name="Details" type="tns:ArrayOfDetails"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GetGeneralDetailsResult"/>
+      <s:complexType name="ArrayOfDetails">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="Details" nillable="true" type="tns:Details"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Details">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:GeneralDetails">
+            <s:sequence>
+              <s:element maxOccurs="1" minOccurs="1" name="ID" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="1" name="Price" type="s:decimal"/>
+              <s:element maxOccurs="1" minOccurs="1" name="NumOfSheets" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="1" name="SubmitTime" type="s:dateTime"/>
+              <s:element maxOccurs="1" minOccurs="1" name="CompletionTime" type="s:dateTime"/>
+              <s:element maxOccurs="1" minOccurs="1" name="Status" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="0" name="StatusDescription" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="1" name="IsBatch" type="s:boolean"/>
+              <s:element maxOccurs="1" minOccurs="0" name="MyDescription" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="1" name="MailerType" type="tns:MailerType"/>
+              <s:element maxOccurs="1" minOccurs="1" name="WorkMode" type="tns:DetailsWorkMode"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType abstract="true" name="GeneralDetails"/>
+      <s:simpleType name="MailerType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Letter"/>
+          <s:enumeration value="Postcard"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DetailsWorkMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Production"/>
+          <s:enumeration value="Development"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDetailsExtended">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="USTBJJT0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Password">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="my0root"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="ID">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="0-9999999"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDetailsExtendedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="GetDetailsExtendedResult" type="tns:GetDetailsExtendedResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetDetailsExtendedResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:GetGeneralDetailsResult">
+            <s:sequence>
+              <s:element maxOccurs="1" minOccurs="1" name="ResultCode">
+              	<s:simpleType>
+              		<s:restriction base="s:int">
+              			<s:enumeration value="-3000"/>
+              		</s:restriction>
+              	</s:simpleType>
+              </s:element>
+              <s:element maxOccurs="1" minOccurs="0" name="Details" type="tns:ArrayOfExtendedDetails"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfExtendedDetails">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="ExtendedDetails" nillable="true" type="tns:ExtendedDetails"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtendedDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:GeneralDetails">
+            <s:sequence>
+              <s:element maxOccurs="1" minOccurs="1" name="ID" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="1" name="Price" type="s:decimal"/>
+              <s:element maxOccurs="1" minOccurs="1" name="NumOfSheets" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="1" name="SubmitTime" type="s:dateTime"/>
+              <s:element maxOccurs="1" minOccurs="1" name="CompletionTime" type="s:dateTime"/>
+              <s:element maxOccurs="1" minOccurs="1" name="Status" type="s:int"/>
+              <s:element maxOccurs="1" minOccurs="0" name="StatusDescription" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="1" name="IsBatch" type="s:boolean"/>
+              <s:element maxOccurs="1" minOccurs="0" name="MyDescription" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="1" name="MailerType" type="tns:MailerType"/>
+              <s:element maxOccurs="1" minOccurs="1" name="WorkMode" type="tns:DetailsWorkMode"/>
+              <s:element maxOccurs="1" minOccurs="0" name="Orientation" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="Envelope" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="Paper" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="PrintColor" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="PrintSides" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="Postcard" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="NationalMailing" type="s:string"/>
+              <s:element maxOccurs="1" minOccurs="0" name="InternationalMailing" type="s:string"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Username">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="USTBJJT0"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="Password">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="my0root"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+            <s:element maxOccurs="1" minOccurs="0" name="ID">
+            	<s:simpleType>
+            		<s:restriction base="s:string">
+            			<s:enumeration value="0-9999999"/>
+            		</s:restriction>
+            	</s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="GetStatusResult" type="tns:GetStatusResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetStatusResult">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="1" name="ResultCode">
+          	<s:simpleType>
+          		<s:restriction base="s:int">
+          			<s:enumeration value="-3000"/>
+          		</s:restriction>
+          	</s:simpleType>
+          </s:element>
+          <s:element maxOccurs="1" minOccurs="0" name="Statuses" type="tns:ArrayOfLetterStatusAndDesc"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLetterStatusAndDesc">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="LetterStatusAndDesc" type="tns:LetterStatusAndDesc"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LetterStatusAndDesc">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="1" name="ID" type="s:int"/>
+          <s:element maxOccurs="1" minOccurs="1" name="Status" type="s:int"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Description" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="1" name="LastUpdateTime" type="s:dateTime"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="int" type="s:int"/>
+      <s:element name="GetUploadedFileDetailsResult" type="tns:GetUploadedFileDetailsResult"/>
+      <s:element name="GetDetailsResult" nillable="true" type="tns:GetDetailsResult"/>
+      <s:element name="GetDetailsExtendedResult" nillable="true" type="tns:GetDetailsExtendedResult"/>
+      <s:element name="GetStatusResult" type="tns:GetStatusResult"/>
+    </s:schema>
+    <s:schema targetNamespace="PostalMethods/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element maxOccurs="unbounded" minOccurs="0" name="String" type="s:string"/>
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DeleteUploadedFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUploadedFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendLetterAndAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:SendLetterAndAddressResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteUploadedFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUploadedFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatus">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendLetterSoapOut">
+    <wsdl:part name="parameters" element="tns:SendLetterResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDetails">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUploadedFileDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUploadedFileDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendLetterSoapIn">
+    <wsdl:part name="parameters" element="tns:SendLetter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendLetterAndAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:SendLetterAndAddress">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDetailsExtendedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDetailsExtendedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDetailsExtendedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDetailsExtended">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUploadedFileDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUploadedFileDetails">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PostalWSSoap">
+    <wsdl:operation name="SendLetter">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[&quot;SendLetter.Username = UploadFile.Username&quot;,&quot;SendLetter.Password = UploadFile.Password&quot;,&quot;SendLetter.MyFileName = UploadFile.MyFileName&quot;],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;((UploadFile)(UploadFileResponse_succ)(SendLetter)(SendLetterResponse_succ))*(UploadFile)(UploadFileResponse_succ)&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input message="tns:SendLetterSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:SendLetterSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendLetterAndAddress">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[&quot;SendLetterAndAddress.Username = UploadFile.Username&quot;,&quot;SendLetterAndAddress.Password = UploadFile.Password&quot;,&quot;SendLetterAndAddress.MyFileName = UploadFile.MyFileName&quot;],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;((UploadFile)(UploadFileResponse_succ)(SendLetterAndAddress)(SendLetterAndAddressResponse_succ))*(UploadFile)(UploadFileResponse_succ)&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="SendLetterAndAddressSoapIn" message="tns:SendLetterAndAddressSoapIn">
+    </wsdl:input>
+      <wsdl:output name="SendLetterAndAddressSoapOut" message="tns:SendLetterAndAddressSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="UploadFileSoapIn" message="tns:UploadFileSoapIn">
+    </wsdl:input>
+      <wsdl:output name="UploadFileSoapOut" message="tns:UploadFileSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUploadedFile">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[&quot;DeleteUploadedFile.Username = UploadFile.Username&quot;,&quot;DeleteUploadedFile.Password = UploadFile.Password&quot;,&quot;DeleteUploadedFile.MyFileName = UploadFile.MyFileName&quot;],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;((UploadFile)(UploadFileResponse_succ)(DeleteUploadedFile)(DeleteUploadedFileResponse_succ))*(UploadFile)(UploadFileResponse_succ)&quot;,&quot;Iteration&quot;:&quot;false&quot;}
+       </wsdl:documentation>
+      <wsdl:input name="DeleteUploadedFileSoapIn" message="tns:DeleteUploadedFileSoapIn">
+    </wsdl:input>
+      <wsdl:output name="DeleteUploadedFileSoapOut" message="tns:DeleteUploadedFileSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUploadedFileDetails">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[&quot;GetUploadedFileDetails.Username = UploadFile.Username&quot;,&quot;GetUploadedFileDetails.Password = UploadFile.Password&quot;],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;((UploadFile)(UploadFileResponse_succ))+&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="GetUploadedFileDetailsSoapIn" message="tns:GetUploadedFileDetailsSoapIn">
+    </wsdl:input>
+      <wsdl:output name="GetUploadedFileDetailsSoapOut" message="tns:GetUploadedFileDetailsSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetails">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="GetDetailsSoapIn" message="tns:GetDetailsSoapIn">
+    </wsdl:input>
+      <wsdl:output name="GetDetailsSoapOut" message="tns:GetDetailsSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsExtended">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="GetDetailsExtendedSoapIn" message="tns:GetDetailsExtendedSoapIn">
+    </wsdl:input>
+      <wsdl:output name="GetDetailsExtendedSoapOut" message="tns:GetDetailsExtendedSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      {&quot;paraRelation&quot;:[],&quot;ipRegion&quot;:&quot;&quot;,&quot;invokeOp&quot;:[],&quot;preOp&quot;:&quot;&quot;,&quot;Iteration&quot;:&quot;true&quot;}
+      </wsdl:documentation>
+      <wsdl:input name="GetStatusSoapIn" message="tns:GetStatusSoapIn">
+    </wsdl:input>
+      <wsdl:output name="GetStatusSoapOut" message="tns:GetStatusSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PostalWSSoap" type="tns:PostalWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendLetter">
+      <soap:operation soapAction="PostalMethods/SendLetter" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendLetterAndAddress">
+      <soap:operation soapAction="PostalMethods/SendLetterAndAddress" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="PostalMethods/UploadFile" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUploadedFile">
+      <soap:operation soapAction="PostalMethods/DeleteUploadedFile" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUploadedFileDetails">
+      <soap:operation soapAction="PostalMethods/GetUploadedFileDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetails">
+      <soap:operation soapAction="PostalMethods/GetDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsExtended">
+      <soap:operation soapAction="PostalMethods/GetDetailsExtended" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="PostalMethods/GetStatus" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PostalWS">
+    <wsdl:port name="PostalWSSoap" binding="tns:PostalWSSoap">
+      <soap:address location="https://api.postalmethods.com/2009-02-26/PostalWS.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
