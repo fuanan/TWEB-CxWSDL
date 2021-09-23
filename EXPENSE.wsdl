@@ -17,7 +17,6 @@
       <element name="tactualmonthlymileage">
 		<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -25,7 +24,6 @@
       <element name="tmonthlysalesamount">
 		<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -33,7 +31,6 @@
       <element name="tairfareamount">
 		<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -41,7 +38,6 @@
       <element name="totherexpensesamount">
 		<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -70,7 +66,6 @@
       <element name="actualmonthlymileage">
       	<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -100,7 +95,6 @@
       <element name="monthlysalesamount">
       	<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -108,7 +102,6 @@
       <element name="airfareamount">
       	<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
@@ -116,7 +109,6 @@
       <element name="otherexpensesamount">
       	<simpleType>
       		<restriction base="double">
-
       			<minInclusive value="0"/>
       		</restriction>
       	</simpleType>
