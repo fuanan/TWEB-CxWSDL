@@ -324,16 +324,12 @@
           <s:sequence>
             <s:element maxOccurs="1" minOccurs="0" name="Username">
             	<s:simpleType>
-            		<s:restriction base="s:string">
-            			<s:enumeration value="USTBJJT0"/>
-            		</s:restriction>
+            		<s:restriction base="s:string"></s:restriction>
             	</s:simpleType>
             </s:element>
             <s:element maxOccurs="1" minOccurs="0" name="Password">
             	<s:simpleType>
-            		<s:restriction base="s:string">
-            			<s:enumeration value="my0root"/>
-            		</s:restriction>
+            		<s:restriction base="s:string"></s:restriction>
             	</s:simpleType>
             </s:element>
             <s:element maxOccurs="1" minOccurs="0" name="ID">
