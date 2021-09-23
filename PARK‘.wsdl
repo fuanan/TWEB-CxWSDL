@@ -52,9 +52,7 @@
       <element name="timeout">
       	<simpleType>
       		<restriction base="int">
-
       			<minInclusive value="0"/>
-
       			<maxInclusive value="24"/>
       		</restriction>
       	</simpleType>
